@@ -3,7 +3,13 @@
 **By MD. Sakib Al Hasan** · [Portfolio](https://sakibzzz641.github.io) · [GitHub](https://github.com/sakibzzz641) · [LinkedIn](https://www.linkedin.com/in/sakibzzz641)
 
 ---
-
+![Excel](https://img.shields.io/badge/Excel-Dashboard-217346)
+![Power Query](https://img.shields.io/badge/Power%20Query-Data%20Cleaning-F2C811)
+![DAX](https://img.shields.io/badge/DAX-Measures-0078D4)
+![PivotTables](https://img.shields.io/badge/PivotTables-Slicers-217346)
+![Data](https://img.shields.io/badge/Data-Global%20Superstore-1F4E79)
+![Period](https://img.shields.io/badge/Period-2011--2014-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
 ## Summary
 
 I turned **25,035 retail orders (2011-2014)** into a **4-page interactive Excel dashboard** that answers questions about sales, profitability, products, regions, customers and shipping.
