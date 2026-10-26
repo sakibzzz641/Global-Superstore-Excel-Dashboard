@@ -272,11 +272,14 @@ Avg Shipping Cost  = AVERAGE('Sheet1'[Shipping Cost])
 
 **MD. Sakib Al Hasan**
 
-- Portfolio: [sakibzzz641.github.io](https://sakibzzz641.github.io)
-- GitHub: [github.com/sakibzzz641](https://github.com/sakibzzz641)
-- LinkedIn: [linkedin.com/in/sakibzzz641](https://www.linkedin.com/in/sakibzzz641)
-- Email: _add your email_
+Explore my projects, technical skills, and professional profile.
+
+[![Email](https://img.shields.io/badge/Email-sakibzzz641%40gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:sakibzzz641@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-sakibzzz641-121013?style=flat&logo=github&logoColor=white)](https://github.com/sakibzzz641)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-sakibzzz641-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/sakibzzz641)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit%20Website-0A66C2?style=flat&logo=googlechrome&logoColor=white)](https://sakibzzz641.github.io/)
 
 ---
+
 
 _If you find this project useful, feel free to star the repository and share your feedback. What would you add to this dashboard?_
