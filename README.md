@@ -7,6 +7,7 @@
 ![Power Query](https://img.shields.io/badge/Power%20Query-Data%20Cleaning-F2C811)
 ![DAX](https://img.shields.io/badge/DAX-Measures-0078D4)
 ![PivotTables](https://img.shields.io/badge/PivotTables-Slicers-217346)
+![VBA](https://img.shields.io/badge/VBA-Reset%20Button-5C2D91)
 ![Data](https://img.shields.io/badge/Data-Global%20Superstore-1F4E79)
 ![Period](https://img.shields.io/badge/Period-2011--2014-lightgrey)
 ![License](https://img.shields.io/badge/License-MIT-green)
@@ -22,7 +23,7 @@ I turned **25,035 retail orders (2011-2014)** into a **4-page interactive Excel 
 
 - **Dataset:** Global retail sales, 2011-2014 (US$12.6M sales, US$1.47M profit)
 - **Type of analysis:** Descriptive + diagnostic business performance analysis
-- **Tools:** Power Query, Excel Data Model, DAX measures, PivotTables, PivotCharts, slicers
+- **Tools:** Power Query, Excel Data Model, DAX measures, PivotTables, PivotCharts, slicers, and a short VBA macro for the **Reset filters** button
 
 **What I built**
 - **Executive Overview:** KPIs, sales and profit trend, category share
@@ -30,7 +31,7 @@ I turned **25,035 retail orders (2011-2014)** into a **4-page interactive Excel 
 - **Regional Analysis:** market and region performance, top states
 - **Customer & Operations:** segments, top customers, shipping and order priority
 
-Every page has its own slicers, so the numbers and charts update together.
+Every page has its own slicers, so the numbers and charts update together, and a one-click **Reset filters** button (powered by a short VBA macro) clears them all.
 
 **Key insights**
 - Sales grew every year and peaked in 2014 at US$4.30M
@@ -52,12 +53,13 @@ No coding needed to use it: open the file, click a slicer, and every KPI and cha
 5. [Recommendations](#recommendations)
 6. [How I Built It](#how-i-built-it)
 7. [DAX Measures](#dax-measures)
-8. [How to Use](#how-to-use)
-9. [Repository Structure](#repository-structure)
-10. [Skills Demonstrated](#skills-demonstrated)
-11. [What I Learned](#what-i-learned)
-12. [Future Improvements](#future-improvements)
-13. [Author](#author)
+8. [VBA Macro (Reset Filters Button)](#vba-macro-reset-filters-button)
+9. [How to Use](#how-to-use)
+10. [Repository Structure](#repository-structure)
+11. [Skills Demonstrated](#skills-demonstrated)
+12. [What I Learned](#what-i-learned)
+13. [Future Improvements](#future-improvements)
+14. [Author](#author)
 
 ---
 
@@ -137,7 +139,7 @@ Customers and delivery efficiency.
 
 ![Customer Analysis](Dashboard_Photo/Customer_Analysis.png)
 
-Every page has its own slicers on the right-hand filter panel, plus a **Reset filters** button.
+Every page has its own slicers on the right-hand filter panel, plus a **Reset filters** button (see [VBA Macro](#vba-macro-reset-filters-button)).
 
 ---
 
@@ -195,6 +197,7 @@ Every page has its own slicers on the right-hand filter panel, plus a **Reset fi
 5. **Created PivotCharts** and formatted them (combo chart, donuts, bars, columns).
 6. **Added slicers** for each page and connected them to that page's PivotTables.
 7. **Designed the dashboard layout**: navy sidebar with page navigation, gradient banner, KPI cards with icons, white panels with coloured top lines, striped tables and conditional colours.
+8. **Added a Reset filters button** that runs a short VBA macro to clear all slicers on the current page.
 
 ---
 
@@ -217,13 +220,42 @@ Avg Shipping Cost  = AVERAGE('Sheet1'[Shipping Cost])
 
 ---
 
+## VBA Macro (Reset Filters Button)
+
+The dashboard uses one short VBA macro. The orange **Reset filters** button on each page runs it. It looks at the slicers on the page you are viewing and clears their filters in one click, so you do not have to reset each slicer by hand.
+
+```vba
+Public Sub Dash_ResetFilters()
+    Dim sc As SlicerCache, sl As Slicer, nm As String
+    nm = ActiveSheet.Name
+    On Error Resume Next
+    For Each sc In ThisWorkbook.SlicerCaches
+        For Each sl In sc.Slicers
+            If sl.Shape.Parent.Name = nm Then
+                sc.ClearManualFilter
+                Exit For
+            End If
+        Next sl
+    Next sc
+End Sub
+```
+
+**How it works**
+- It reads the name of the active sheet.
+- It loops through all slicer caches in the workbook and finds the slicers placed on that sheet.
+- For each of them it clears the filter, so all charts, tables and KPI cards on that page return to the full data.
+
+Everything else in the dashboard (PivotTables, charts, KPIs, slicers) works without any code. Because of the macro, the file is saved as **.xlsm**.
+
+---
+
 ## How to Use
 
 1. Download [`Global Super Store Dataset.xlsm`](Workbook/Global%20Super%20Store%20Dataset.xlsm) from the `Workbook` folder of this repository.
-2. Open it in **Microsoft Excel 2016 or later** (Windows recommended; the Data Model and slicers need the desktop version). The file is macro-enabled (`.xlsm`), so click **Enable Content** if Excel asks.
+2. Open it in **Microsoft Excel 2016 or later** (Windows recommended; the Data Model and slicers need the desktop version). The file is macro-enabled (`.xlsm`), so click **Enable Content** if Excel asks. Macros are only needed for the Reset button; everything else works without them.
 3. Set the zoom to **100%**.
 4. Use the **sidebar** to switch between the four pages.
-5. Click the **slicers** on the right to filter by year, market, region, segment, category or sub-category. Click the funnel icon on a slicer to clear its filter, or press **Reset filters** to clear all of them.
+5. Click the **slicers** on the right to filter by year, market, region, segment, category or sub-category. Click the funnel icon on a slicer to clear its filter, or press **Reset filters** to clear all of them on that page.
 
 ---
 
@@ -253,6 +285,7 @@ Avg Shipping Cost  = AVERAGE('Sheet1'[Shipping Cost])
 - Writing **DAX measures**
 - Summarising data with **PivotTables** and **PivotCharts**
 - Interactive reporting with **slicers**
+- Basic **VBA** (a macro for the Reset filters button)
 - **Dashboard design**: layout, colour, hierarchy and storytelling
 - Business analysis: finding insights and turning them into recommendations
 
@@ -264,6 +297,7 @@ Avg Shipping Cost  = AVERAGE('Sheet1'[Shipping Cost])
 - Small details, such as the correct data type for `Profit`, change the final numbers.
 - Splitting a large dashboard into focused pages is easier to read than one crowded page.
 - Looking at profit margin, not only sales, changes which products and regions look "best".
+- A few lines of VBA can add a small but useful feature, such as one-click filter reset.
 
 ---
 
