@@ -16,7 +16,9 @@ I turned **25,035 retail orders (2011-2014)** into a **4-page interactive Excel 
 
 ![Executive Overview](Dashboard_Photo/Executive_Overview.png)
 
-**Video walkthrough:** _add your LinkedIn or YouTube link here_
+### 🎥 Video Walkthrough
+
+[![Watch the walkthrough on YouTube](https://img.shields.io/badge/%E2%96%B6%20Watch%20the%20Walkthrough-YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=bOUNd_Z8_Yk)
 
 - **Dataset:** Global retail sales, 2011-2014 (US$12.6M sales, US$1.47M profit)
 - **Type of analysis:** Descriptive + diagnostic business performance analysis
